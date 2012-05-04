@@ -13,17 +13,19 @@ extended deploy:ant-salesforce
 
 # sample
 
-<https://github.com/yutagithub/ForceComInspection>
+[SampleSFDCProject](https://github.com/yutagithub/ForceComInspection "sample project")
 
 ## dir-design
 
 * /build.xml
-* lib/
- * ant-salesforce.jar
- * ant-salesforce-ci.jar
- * scala-library.jar
-* src/
- * sfdc source directory
+* [lib/](https://github.com/yutagithub/ForceComInspection/tree/master/lib "lib directory") 
+ * [ant-salesforce.jar](https://github.com/yutagithub/ForceComInspection/raw/master/lib/ant-salesforce.jar "ant-salesforce.jar") 
+ * [ant-salesforce-ci.jar](https://github.com/yutagithub/ForceComInspection/raw/master/lib/ant-salesforce-ci_2.9.1-1.0.jar "ant-salesforce-ci_2.9.1-1.0.jar") 
+ * [scala-library.jar](https://github.com/yutagithub/ForceComInspection/raw/master/lib/scala-library.jar "scala-library.jar") 
+* [src/](https://github.com/yutagithub/ForceComInspection/tree/master/src "sfdc source directory")
+ * classes
+ * pages
+ * triggers
 
 
 ## build.xml
