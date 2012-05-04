@@ -1,3 +1,0 @@
-<antlib>
-    <typedef name="deployForCI" classname="com.yutagithub.sforce.ci.DeployTaskForCI"/>
-</antlib>
