@@ -36,8 +36,8 @@ case class DeployTaskForCI extends DeployTask {
     
     val testResultFile = this.getProject().getProperty("sfc.testResultFile")
     xml.JUnitXmlWriter.saveTestResult(
-      if (testResultFile != null) {
-        "test-result.xml"
+      if (testResultFile == null) {
+        "target/sforceci/test-result.xml"
       } else {
         testResultFile
       }, deployStatus)

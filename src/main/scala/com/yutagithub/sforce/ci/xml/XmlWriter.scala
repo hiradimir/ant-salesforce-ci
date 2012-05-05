@@ -9,19 +9,24 @@ trait XmlWriter {
 
   import java.io.{ File, PrintWriter }
   def writeXml(filePath: String, elem: Elem): Unit = writeXml(new File(filePath), elem)
-  def writeXml(filePath: File, elem: Elem): Unit = {
+  def writeXml(file: File, elem: Elem): Unit = {
     withPrintWriter(
-      filePath,
+      file,
       pw => {
         pw.println(xmlHeader)
         pw.println((new scala.xml.PrettyPrinter(120, 4)).format(elem))
       })
   }
   def withPrintWriter(file: File, op: PrintWriter => Unit) {
+    if(file.getParentFile != null && !file.getParentFile.exists){
+      file.getParentFile.mkdirs
+    }
     val writer = new PrintWriter(file)
     try {
       op(writer)
-    } finally {
+    } catch{
+      case ex => throw ex;
+    }finally {
       writer.close()
     }
   }
