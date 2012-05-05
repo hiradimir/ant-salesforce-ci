@@ -2,13 +2,22 @@
 
 extended deploy:ant-salesforce
 
+Usually use empty DE edition to target for deploy.
+
+Then you get test/coverage result.
+
+
+I think to using together Jenkins.
+
+
+
 
 ## task
 1. deployForCI
 
 #### option
-1. sfc.testResultFile(default:test-result.xml)
-
+1. sfc.testResultFile(default:target/sforceci/test-result.xml)
+1. sfc.coverageResultFile(default:target/sforceci/coverage.xml)
 
 
 # sample
@@ -47,6 +56,6 @@ extended deploy:ant-salesforce
 
 ## command
 run at command line
-```sh
-ant -lib lib -Dsfc.testResultFile=<testResultFileName> -Dsf.username=<sf.username> -Dsf.password=<password><securityToken> deployForCI
+```shell
+ant -lib lib -Dsfc.testResultFile=<testResultFileName> -Dsfc.coverageResultFile=<coverageResultFileName> -Dsf.username=<sf.username> -Dsf.password=<password><securityToken> deployForCI
 ```
