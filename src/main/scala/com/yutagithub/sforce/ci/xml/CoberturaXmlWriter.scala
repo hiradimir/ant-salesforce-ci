@@ -31,7 +31,15 @@ object CoberturaXmlWriter extends XmlWriter {
   case class CoverageClass(name: String, fileName: String, linesNotCovered: Int, linesValid: Int, lines: Traversable[CoverageNotCoveredLine]) extends CoveredRate with toXml {
     def toXml = <class name={ name } filename={ fileName } line-rate={ lineRate.toString } branch-rate="0" complexity="0">
                   <methods/>
-                  <lines>{ lines.map(_.toXml) }</lines>
+                  <lines>{
+                    // dummy line coverage
+                    (0 until (linesValid - linesNotCovered)).
+                    map(x=>{
+                      <line number={(-x).toString} hits="1" branch="false"/>
+                      })
+                  }{
+                    lines.map(_.toXml)
+                  }</lines>
                 </class>
   }
 
@@ -62,9 +70,7 @@ object CoberturaXmlWriter extends XmlWriter {
   def saveCoverageResult(filePath: String, deployResult: com.sforce.soap.metadata.DeployResult) = {
     val rtr = deployResult.getRunTestResult
 
-    val ccs = rtr.getCodeCoverage
-
-    ccs.map(cc => {
+    rtr.getCodeCoverage.map(cc => {
       println("codeCoverage", cc.getNumLocations, cc.getNumLocationsNotCovered, cc.getName, cc.getType);
       cc.getMethodInfo.foreach(mi => {
         println("methodInfo", mi.getLine, mi.getColumn, mi.getNumExecutions, mi.getTime);
@@ -74,14 +80,14 @@ object CoberturaXmlWriter extends XmlWriter {
       })
     })
 
-    val coverage = Covarage(ccs.groupBy(_.getType).map(pkg => {
+    val coverage = Covarage(rtr.getCodeCoverage.groupBy(_.getType).map(pkg => {
       CoveragePackage(pkg._1, pkg._2.map(cls => {
         val filename = {
-          pkg._1 match{
+          pkg._1 match {
             case "Class" => {
               "classes/" + cls.getName + ".cls"
             }
-            case "Trigger" =>{
+            case "Trigger" => {
               "trigger/" + cls.getName + ".trigger"
             }
           }
