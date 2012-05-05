@@ -23,7 +23,7 @@ case class DeployTaskForCI extends DeployTask {
    */
   override def getRunTests(): Array[String] = Array()
 
-  override def handleResponse(metadataConnection: MetadataConnection, response: AsyncResult) = {
+  override def handleResponse(metadataConnection: MetadataConnection, response: AsyncResult):Unit = {
     val debugHeader = new DebuggingHeader_element();
     debugHeader.setDebugLevel(
       if (this.getLogType != null) {
@@ -32,18 +32,27 @@ case class DeployTaskForCI extends DeployTask {
         LogType.None
       });
     metadataConnection.__setDebuggingHeader(debugHeader);
-    val deployStatus = metadataConnection.checkDeployStatus(response.getId());
-    
+    val deployResult = metadataConnection.checkDeployStatus(response.getId());
+
     val testResultFile = this.getProject().getProperty("sfc.testResultFile")
     xml.JUnitXmlWriter.saveTestResult(
       if (testResultFile == null) {
         "target/sforceci/test-result.xml"
       } else {
         testResultFile
-      }, deployStatus)
+      }, deployResult)
 
-    super.handleResponse(metadataConnection, response);
-
+      
+    val coverageResultFile = this.getProject().getProperty("sfc.coverageResultFile")
+    xml.CoberturaXmlWriter.saveCoverageResult(
+      if (coverageResultFile == null) {
+        "target/sforceci/coverage.xml"
+      } else {
+        coverageResultFile
+      }, deployResult)
+    
+    
+    {}
   }
 }
 

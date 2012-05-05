@@ -6,7 +6,7 @@ import scala.xml.dtd.EMPTY
 object JUnitXmlWriter extends XmlWriter{
 
   case class TestStatus(status: String, time: Double, name: String, methodName: String, message: String, errorType: String, stackTrace: String) {
-    lazy val ms = { time.asInstanceOf[Float] / 1000 }
+    lazy val ms = { time / 1000.0f }
   }
 
   def saveTestResult(filePath: String, deployResult: com.sforce.soap.metadata.DeployResult) = {
