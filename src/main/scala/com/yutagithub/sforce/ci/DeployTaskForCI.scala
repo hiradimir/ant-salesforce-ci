@@ -62,7 +62,10 @@ case class DeployTaskForCI extends DeployTask {
         coverageResultFile
       }, deployResult)
 
-    super.handleResponse(metadataConnection, response);
+    if (deployResult.getMessages.exists(!_.isSuccess)) {
+      super.handleResponse(metadataConnection, response);
+    }
+
   }
 }
 
