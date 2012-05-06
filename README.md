@@ -61,4 +61,10 @@ run at command line
 ant -lib lib -Dsfc.sobjectPlural=true -Dsfc.testResultFile=<testResultFileName> -Dsfc.coverageResultFile=<coverageResultFileName> -Dsf.username=<sf.username> -Dsf.password=<password><securityToken> deployForCI
 ```
 
+![jenkins-top.png](../../raw/master/src/test/resources/images/jenkins-top.png) 
+![test-failure-top.png](../../raw/master/src/test/resources/images/test-failure-top.png) 
+![test-failure-detail.png](../../raw/master/src/test/resources/images/test-failure-detail.png) 
+![coverage-top.png](../../raw/master/src/test/resources/images/coverage-top.png) 
+![coverage-classes.png](../../raw/master/src/test/resources/images/coverage-classes.png) 
+![coverage-class-util.png](../../raw/master/src/test/resources/images/coverage-class-util.png) 
 
