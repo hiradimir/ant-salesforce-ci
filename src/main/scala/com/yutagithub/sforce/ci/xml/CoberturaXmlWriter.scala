@@ -90,7 +90,7 @@ object CoberturaXmlWriter extends XmlWriter {
               "classes/" + cls.getName + ".cls"
             }
             case "Trigger" => {
-              "trigger/" + cls.getName + ".trigger"
+              "triggers/" + cls.getName + ".trigger"
             }
           }
         }
