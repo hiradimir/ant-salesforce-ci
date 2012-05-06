@@ -21,7 +21,7 @@ trait XmlWriter {
     if(file.getParentFile != null && !file.getParentFile.exists){
       file.getParentFile.mkdirs
     }
-    val writer = new PrintWriter(file)
+    val writer = new PrintWriter(file, "UTF-8")
     try {
       op(writer)
     } catch{

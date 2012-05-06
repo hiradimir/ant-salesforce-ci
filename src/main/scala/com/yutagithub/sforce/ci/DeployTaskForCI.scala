@@ -11,11 +11,23 @@ case class DeployTaskForCI extends DeployTask {
     this.setCheckonly(true);
     this.setRunAllTests(true);
     this.setRollbackOnError(true);
-
     // for all deploy
     this.setAutoUpdatePackage(true);
-
+    if (this.getProject().getProperty("sfc.sobjectPlural") == true.toString) {
+      val dir = new java.io.File(getFileForPath(deployRootCI), "objects")
+      println(dir)
+      dir.listFiles().filter(_.getName.endsWith(".object")).foreach(file => {
+        xml.PluralLabelCombine.combine(file.getCanonicalPath)
+      })
+    }
     super.execute();
+  }
+
+  var deployRootCI: String = ""
+  override def setDeployRoot(deployRoot: String) = {
+    this.deployRootCI = deployRoot
+    super.setDeployRoot(deployRoot)
+
   }
 
   /**
@@ -23,7 +35,7 @@ case class DeployTaskForCI extends DeployTask {
    */
   override def getRunTests(): Array[String] = Array()
 
-  override def handleResponse(metadataConnection: MetadataConnection, response: AsyncResult):Unit = {
+  override def handleResponse(metadataConnection: MetadataConnection, response: AsyncResult): Unit = {
     val debugHeader = new DebuggingHeader_element();
     debugHeader.setDebugLevel(
       if (this.getLogType != null) {
@@ -42,7 +54,6 @@ case class DeployTaskForCI extends DeployTask {
         testResultFile
       }, deployResult)
 
-      
     val coverageResultFile = this.getProject().getProperty("sfc.coverageResultFile")
     xml.CoberturaXmlWriter.saveCoverageResult(
       if (coverageResultFile == null) {
@@ -50,9 +61,8 @@ case class DeployTaskForCI extends DeployTask {
       } else {
         coverageResultFile
       }, deployResult)
-    
-    
-    {}
+
+    super.handleResponse(metadataConnection, response);
   }
 }
 

@@ -24,7 +24,7 @@ object JUnitXmlWriter extends XmlWriter{
     } failures={
       allTestCase.filter(_.status == "fail").size + ""
     } time={
-      allTestCase.map(_.ms) + ""
+      allTestCase.map(_.ms).sum + ""
     }>
                  {
                    allTestCase.groupBy(_.name).map {

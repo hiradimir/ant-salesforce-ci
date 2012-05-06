@@ -34,8 +34,8 @@ object CoberturaXmlWriter extends XmlWriter {
                   <lines>{
                     // dummy line coverage
                     (0 until (linesValid - linesNotCovered)).
-                    map(x=>{
-                      <line number={(-x).toString} hits="1" branch="false"/>
+                      map(x => {
+                        <line number={ (-x).toString } hits="1" branch="false"/>
                       })
                   }{
                     lines.map(_.toXml)
@@ -79,6 +79,8 @@ object CoberturaXmlWriter extends XmlWriter {
         println("LocationsNotCovered", lnc.getLine, lnc.getTime);
       })
     })
+
+    println(rtr.getCodeCoverage, rtr.getCodeCoverageWarnings, rtr.getFailures, rtr.getSuccesses)
 
     val coverage = Covarage(rtr.getCodeCoverage.groupBy(_.getType).map(pkg => {
       CoveragePackage(pkg._1, pkg._2.map(cls => {
