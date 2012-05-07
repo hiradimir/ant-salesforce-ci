@@ -61,4 +61,34 @@ run at command line
 ant -lib lib -Dsfc.sobjectPlural=true -Dsfc.testResultFile=<testResultFileName> -Dsfc.coverageResultFile=<coverageResultFileName> -Dsf.username=<sf.username> -Dsf.password=<password><securityToken> deployForCI
 ```
 
+# Sample Jenkins ScreenShot
 
+## Jenkins-Top
+![jenkins-top.png](https://github.com/yutagithub/ant-salesforce-ci/raw/master/src/test/resources/images/jenkins-top.png) 
+## Test-Result
+![test-failure-top.png](https://github.com/yutagithub/ant-salesforce-ci/raw/master/src/test/resources/images/test-failure-top.png) 
+## Test-Failure-Detail
+![test-failure-detail.png](https://github.com/yutagithub/ant-salesforce-ci/raw/master/src/test/resources/images/test-failure-detail.png) 
+## Coverage-Top
+![coverage-top.png](https://github.com/yutagithub/ant-salesforce-ci/raw/master/src/test/resources/images/coverage-top.png) 
+## Coverage-Classses(package)
+![coverage-classes.png](https://github.com/yutagithub/ant-salesforce-ci/raw/master/src/test/resources/images/coverage-classes.png) 
+## Coverage-Class(sample Util.cls)
+![coverage-class-util.png](https://github.com/yutagithub/ant-salesforce-ci/raw/master/src/test/resources/images/coverage-class-util.png) 
+
+
+
+
+   Copyright 2012 yutagithub
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
