@@ -13,7 +13,8 @@ case class DeployTaskForCI extends DeployTask {
     this.setRollbackOnError(true);
     // for all deploy
     this.setAutoUpdatePackage(true);
-    if (this.getProject().getProperty("sfc.sobjectPlural") == true.toString) {
+    //if (this.getProject().getProperty("sfc.sobjectPlural") == true.toString) {
+    if (sobjectPlural == true.toString) {
       val dir = new java.io.File(getFileForPath(deployRootCI), "objects")
       println(dir)
       dir.listFiles().filter(_.getName.endsWith(".object")).foreach(file => {
@@ -27,7 +28,20 @@ case class DeployTaskForCI extends DeployTask {
   override def setDeployRoot(deployRoot: String) = {
     this.deployRootCI = deployRoot
     super.setDeployRoot(deployRoot)
+  }
+  var sobjectPlural: String = false.toString;
+  def setSobjectPlural(sobjectPlural: String){
+    this.sobjectPlural = sobjectPlural;
+  }
 
+  var coverageResultFile: String = null;
+  def setCoverageResultFile(coverageResultFile: String){
+    this.coverageResultFile = coverageResultFile;
+  }
+
+  var testResultFile: String = null;
+  def setTestResultFile(testResultFile: String){
+    this.testResultFile = testResultFile;
   }
 
   /**
@@ -46,7 +60,6 @@ case class DeployTaskForCI extends DeployTask {
     metadataConnection.__setDebuggingHeader(debugHeader);
     val deployResult = metadataConnection.checkDeployStatus(response.getId());
 
-    val testResultFile = this.getProject().getProperty("sfc.testResultFile")
     xml.JUnitXmlWriter.saveTestResult(
       if (testResultFile == null) {
         "target/sforceci/test-result.xml"
@@ -54,7 +67,6 @@ case class DeployTaskForCI extends DeployTask {
         testResultFile
       }, deployResult)
 
-    val coverageResultFile = this.getProject().getProperty("sfc.coverageResultFile")
     xml.CoberturaXmlWriter.saveCoverageResult(
       if (coverageResultFile == null) {
         "target/sforceci/coverage.xml"
