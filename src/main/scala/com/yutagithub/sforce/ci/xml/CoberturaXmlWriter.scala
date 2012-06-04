@@ -70,17 +70,19 @@ object CoberturaXmlWriter extends XmlWriter {
   def saveCoverageResult(filePath: String, deployResult: com.sforce.soap.metadata.DeployResult) = {
     val rtr = deployResult.getRunTestResult
 
+    /*
     rtr.getCodeCoverage.map(cc => {
       println("codeCoverage", cc.getNumLocations, cc.getNumLocationsNotCovered, cc.getName, cc.getType);
       cc.getMethodInfo.foreach(mi => {
         println("methodInfo", mi.getLine, mi.getColumn, mi.getNumExecutions, mi.getTime);
       })
       cc.getLocationsNotCovered.foreach(lnc => {
-        println("LocationsNotCovered", lnc.getLine, lnc.getTime);
+       println("LocationsNotCovered", lnc.getLine, lnc.getTime);
       })
     })
+    */
 
-    println(rtr.getCodeCoverage, rtr.getCodeCoverageWarnings, rtr.getFailures, rtr.getSuccesses)
+    //println(rtr.getCodeCoverage, rtr.getCodeCoverageWarnings, rtr.getFailures, rtr.getSuccesses)
 
     val coverage = Covarage(rtr.getCodeCoverage.groupBy(_.getType).map(pkg => {
       CoveragePackage(pkg._1, pkg._2.map(cls => {
