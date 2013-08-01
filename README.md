@@ -64,22 +64,22 @@ ant -lib lib -Dsfc.sobjectPlural=true -Dsfc.testResultFile=<testResultFileName> 
 # Sample Jenkins ScreenShot
 
 ## Jenkins-Top
-![jenkins-top.png](https://github.com/yutagithub/ant-salesforce-ci/raw/master/src/test/resources/images/jenkins-top.png) 
+![jenkins-top.png](/yutavsky/ant-salesforce-ci/raw/master/src/test/resources/images/jenkins-top.png) 
 ## Test-Result
-![test-failure-top.png](https://github.com/yutagithub/ant-salesforce-ci/raw/master/src/test/resources/images/test-failure-top.png) 
+![test-failure-top.png](/yutavsky/ant-salesforce-ci/raw/master/src/test/resources/images/test-failure-top.png) 
 ## Test-Failure-Detail
-![test-failure-detail.png](https://github.com/yutagithub/ant-salesforce-ci/raw/master/src/test/resources/images/test-failure-detail.png) 
+![test-failure-detail.png](/yutavsky/ant-salesforce-ci/raw/master/src/test/resources/images/test-failure-detail.png) 
 ## Coverage-Top
-![coverage-top.png](https://github.com/yutagithub/ant-salesforce-ci/raw/master/src/test/resources/images/coverage-top.png) 
+![coverage-top.png](/yutavsky/ant-salesforce-ci/raw/master/src/test/resources/images/coverage-top.png) 
 ## Coverage-Classses(package)
-![coverage-classes.png](https://github.com/yutagithub/ant-salesforce-ci/raw/master/src/test/resources/images/coverage-classes.png) 
+![coverage-classes.png](/yutavsky/ant-salesforce-ci/raw/master/src/test/resources/images/coverage-classes.png) 
 ## Coverage-Class(sample Util.cls)
-![coverage-class-util.png](https://github.com/yutagithub/ant-salesforce-ci/raw/master/src/test/resources/images/coverage-class-util.png) 
+![coverage-class-util.png](/yutavsky/ant-salesforce-ci/raw/master/src/test/resources/images/coverage-class-util.png) 
 
 
 
 
-   Copyright 2012 yutagithub
+   Copyright 2012 yutavsky
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
