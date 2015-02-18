@@ -23,16 +23,16 @@ I think to using together Jenkins.
 
 # sample
 
-[SampleSFDCProject](https://github.com/yutagithub/ForceComSample "sample project")
+[SampleSFDCProject](https://github.com/hiradimir/ForceComSample "sample project")
 
 ## dir-design
 
 * /build.xml
-* [lib/](https://github.com/yutagithub/ForceComSample/tree/master/lib "lib directory") 
+* [lib/](https://github.com/hiradimir/ForceComSample/tree/master/lib "lib directory") 
  * ant-salesforce.jar
- * [ant-salesforce-ci.jar](https://github.com/yutagithub/ForceComSample/raw/master/lib/ant-salesforce-ci_2.9.1-1.0.jar "ant-salesforce-ci_2.9.1-1.0.jar") 
- * [scala-library.jar](https://github.com/yutagithub/ForceComSample/raw/master/lib/scala-library.jar "scala-library.jar") - this project built by scala
-* [src/](https://github.com/yutagithub/ForceComSample/tree/master/src "sfdc source directory")
+ * [ant-salesforce-ci.jar](https://github.com/hiradimir/ForceComSample/raw/master/lib/ant-salesforce-ci_2.9.1-1.0.jar "ant-salesforce-ci_2.9.1-1.0.jar") 
+ * [scala-library.jar](https://github.com/hiradimir/ForceComSample/raw/master/lib/scala-library.jar "scala-library.jar") - this project built by scala
+* [src/](https://github.com/hiradimir/ForceComSample/tree/master/src "sfdc source directory")
  * classes
  * pages
  * triggers
@@ -41,7 +41,7 @@ I think to using together Jenkins.
 ## build.xml
 
 ```xml
-<project name="Sample usage of Salesforce-CI Ant tasks" default="deployForCI" basedir="." xmlns:sfc="antlib:com.yutagithub.sforce.ci">
+<project name="Sample usage of Salesforce-CI Ant tasks" default="deployForCI" basedir="." xmlns:sfc="antlib:com.hiradimir.sforce.ci">
 
   <property file="build.properties" />
 	<property environment="env" />
@@ -64,22 +64,22 @@ ant -lib lib -Dsfc.sobjectPlural=true -Dsfc.testResultFile=<testResultFileName> 
 # Sample Jenkins ScreenShot
 
 ## Jenkins-Top
-![jenkins-top.png](//raw.github.com/yutavsky/ant-salesforce-ci/master/src/test/resources/images/jenkins-top.png) 
+![jenkins-top.png](//raw.github.com/hiradimir/ant-salesforce-ci/master/src/test/resources/images/jenkins-top.png) 
 ## Test-Result
-![test-failure-top.png](//raw.github.com/yutavsky/ant-salesforce-ci/master/src/test/resources/images/test-failure-top.png) 
+![test-failure-top.png](//raw.github.com/hiradimir/ant-salesforce-ci/master/src/test/resources/images/test-failure-top.png) 
 ## Test-Failure-Detail
-![test-failure-detail.png](//raw.github.com/yutavsky/ant-salesforce-ci/master/src/test/resources/images/test-failure-detail.png) 
+![test-failure-detail.png](//raw.github.com/hiradimir/ant-salesforce-ci/master/src/test/resources/images/test-failure-detail.png) 
 ## Coverage-Top
-![coverage-top.png](//raw.github.com/yutavsky/ant-salesforce-ci/master/src/test/resources/images/coverage-top.png) 
+![coverage-top.png](//raw.github.com/hiradimir/ant-salesforce-ci/master/src/test/resources/images/coverage-top.png) 
 ## Coverage-Classses(package)
-![coverage-classes.png](//raw.github.com/yutavsky/ant-salesforce-ci/master/src/test/resources/images/coverage-classes.png) 
+![coverage-classes.png](//raw.github.com/hiradimir/ant-salesforce-ci/master/src/test/resources/images/coverage-classes.png) 
 ## Coverage-Class(sample Util.cls)
-![coverage-class-util.png](//raw.github.com/yutavsky/ant-salesforce-ci/master/src/test/resources/images/coverage-class-util.png) 
+![coverage-class-util.png](//raw.github.com/hiradimir/ant-salesforce-ci/master/src/test/resources/images/coverage-class-util.png) 
 
 
 
 
-   Copyright 2012 yutavsky
+   Copyright 2012 hiradimir
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
