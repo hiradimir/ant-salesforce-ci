@@ -1,16 +1,13 @@
 package com.hiradimir.sforce.ci.xml
 
 import org.specs2._
-import org.junit.runner._
 import runner._
 import scala.xml.Elem
 import scala.xml.dtd.EMPTY
-import org.junit.internal.runners.JUnit4ClassRunner
 
 /**
  * This class must be inherited to allow a Specification to be executed as a JUnit test
  */
-@RunWith(classOf[JUnit4ClassRunner])
 class XmlWriterTest extends Specification {
 
   def is = "XmlWriter" ^

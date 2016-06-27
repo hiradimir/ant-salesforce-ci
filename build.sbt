@@ -5,8 +5,7 @@ version := "1.0"
 scalaVersion := "2.11.7"
 
 libraryDependencies ++= Seq(
-  "org.specs2" %% "specs2-core" % "3.0" % "test",
-  "junit" % "junit" % "4.9" % "test",
+  "org.specs2" %% "specs2-core" % "3.8.4" % "test",
   "org.apache.ant" % "ant" % "1.8.3" % "compile",
   "org.scala-lang.modules" % "scala-xml_2.11" % "1.0.5"
 )
@@ -19,3 +18,4 @@ resolvers ++= Seq(
   "Scalaz Bintray Repo" at "http://dl.bintray.com/scalaz/releases"
 )
 
+scalacOptions in Test ++= Seq("-Yrangepos")
