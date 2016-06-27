@@ -1,5 +1,6 @@
-package com.yutagithub.sforce.ci.xml
+package com.hiradimir.sforce.ci.xml
 
+import scala.xml
 import scala.xml.Elem
 
 object CoberturaXmlWriter extends XmlWriter {
@@ -44,7 +45,7 @@ object CoberturaXmlWriter extends XmlWriter {
   }
 
   case class CoveragePackage(packageName: String, child: Traversable[CoverageClass]) extends NotCoveredValid with CoveredRate with toXml {
-    def toXml = <package name={ packageName } line-rate={ lineRate.toString } branch-rate="0" complexity="0">
+    def toXml = <package com.hiradimir.sforce.ci.xml={ packageName } line-rate={ lineRate.toString } branch-rate="0" complexity="0">
                   <classes>{ child.map(_.toXml) }</classes>
                 </package>
   }
@@ -68,7 +69,7 @@ object CoberturaXmlWriter extends XmlWriter {
   }
 
   def saveCoverageResult(filePath: String, deployResult: com.sforce.soap.metadata.DeployResult) = {
-    val rtr = deployResult.getRunTestResult
+//    val rtr = deployResult.getRunTestResult
 
     /*
     rtr.getCodeCoverage.map(cc => {
@@ -84,27 +85,26 @@ object CoberturaXmlWriter extends XmlWriter {
 
     //println(rtr.getCodeCoverage, rtr.getCodeCoverageWarnings, rtr.getFailures, rtr.getSuccesses)
 
-    val coverage = Covarage(rtr.getCodeCoverage.groupBy(_.getType).map(pkg => {
-      CoveragePackage(pkg._1, pkg._2.map(cls => {
-        val filename = {
-          pkg._1 match {
-            case "Class" => {
-              "classes/" + cls.getName + ".cls"
-            }
-            case "Trigger" => {
-              "triggers/" + cls.getName + ".trigger"
-            }
-          }
-        }
-        CoverageClass(cls.getName, filename, cls.getNumLocationsNotCovered, cls.getNumLocations, cls.getLocationsNotCovered.map(lnc => {
-          CoverageNotCoveredLine(lnc.getLine)
-        }))
-      }))
-    }))
+//    val coverage = Covarage(rtr.getCodeCoverage.groupBy(_.getType).map(pkg => {
+//      CoveragePackage(pkg._1, pkg._2.map(cls => {
+//        val filename = {
+//          pkg._1 match {
+//            case "Class" => {
+//              "classes/" + cls.getName + ".cls"
+//            }
+//            case "Trigger" => {
+//              "triggers/" + cls.getName + ".trigger"
+//            }
+//          }
+//        }
+//        CoverageClass(cls.getName, filename, cls.getNumLocationsNotCovered, cls.getNumLocations, cls.getLocationsNotCovered.map(lnc => {
+//          CoverageNotCoveredLine(lnc.getLine)
+//        }))
+//      }))
+//    }))
+//
+//    writeXml(filePath, coverage.toXml)
 
-    writeXml(filePath, coverage.toXml)
-
-    {}
 
   }
 }

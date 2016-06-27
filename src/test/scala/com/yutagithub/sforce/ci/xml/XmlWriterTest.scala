@@ -1,4 +1,4 @@
-package com.yutagithub.sforce.ci.xml
+package com.hiradimir.sforce.ci.xml
 
 import org.specs2._
 import org.junit.runner._

@@ -1,10 +1,11 @@
-package com.yutagithub.sforce.ci
+package com.hiradimir.sforce.ci
 
 import com.salesforce.ant.DeployTask
 import com.sforce.soap.metadata._
 import scala.xml.Elem
+import com.salesforce.ant.SFDCMDAPIAntTask.StatusResult
 
-case class DeployTaskForCI extends DeployTask {
+class DeployTaskForCI extends DeployTask {
 
   override def execute() = {
     // for safety
@@ -61,28 +62,28 @@ case class DeployTaskForCI extends DeployTask {
    */
   override def getRunTests(): Array[String] = Array()
 
-  override def handleResponse(metadataConnection: MetadataConnection, response: AsyncResult): Unit = {
-    val debugHeader = new DebuggingHeader_element();
-    debugHeader.setDebugLevel(
-      if (this.getLogType != null) {
-        LogType.valueOf(this.getLogType)
-      } else {
-        LogType.None
-      });
-    metadataConnection.__setDebuggingHeader(debugHeader);
-    val deployResult = metadataConnection.checkDeployStatus(response.getId());
-
-    xml.JUnitXmlWriter.saveTestResult(
-      testResultFile, deployResult)
-
-    xml.CoberturaXmlWriter.saveCoverageResult(
-      coverageResultFile, deployResult)
-
-    if (deployResult.getMessages.exists(!_.isSuccess)) {
-      super.handleResponse(metadataConnection, response);
-    }
-
-  }
+//  override def handleResponse(metadataConnection: MetadataConnection, result: StatusResult): Unit = {
+//    val debugHeader = new DebuggingHeader_element();
+//    debugHeader.setDebugLevel(
+//      if (this.getLogType != null) {
+//        LogType.valueOf(this.getLogType)
+//      } else {
+//        LogType.None
+//      });
+//    metadataConnection.__setDebuggingHeader(debugHeader);
+//    val deployResult = metadataConnection.checkDeployStatus(result.getId(), true);
+//
+//    xml.JUnitXmlWriter.saveTestResult(
+//      testResultFile, deployResult)
+//
+//    xml.CoberturaXmlWriter.saveCoverageResult(
+//      coverageResultFile, deployResult)
+//
+////    if (deployResult.getMessages.exists(!_.isSuccess)) {
+////      super.handleResponse(metadataConnection, result);
+////    }
+//
+//  }
 }
 
 

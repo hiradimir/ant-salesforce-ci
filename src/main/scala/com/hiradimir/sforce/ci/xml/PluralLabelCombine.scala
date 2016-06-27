@@ -1,4 +1,4 @@
-package com.yutagithub.sforce.ci.xml
+package com.hiradimir.sforce.ci.xml
 
 import java.io._
 import scala.xml._

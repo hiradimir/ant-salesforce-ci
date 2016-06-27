@@ -1,4 +1,4 @@
-package com.yutagithub.sforce.ci.xml
+package com.hiradimir.sforce.ci.xml
 
 import scala.Array.canBuildFrom
 import scala.xml.dtd.EMPTY
@@ -11,8 +11,8 @@ object JUnitXmlWriter extends XmlWriter{
 
   def saveTestResult(filePath: String, deployResult: com.sforce.soap.metadata.DeployResult) = {
 
-    val rtr = deployResult.getRunTestResult
-
+//    val rtr = deployResult.getRunTestResult
+/*
     val allTestCase = rtr.getSuccesses.map(scs => {
       TestStatus("run", scs.getTime, scs.getName, scs.getMethodName, "", "", "")
     }) ++ rtr.getFailures.map(flr => {
@@ -70,7 +70,7 @@ object JUnitXmlWriter extends XmlWriter{
                  }
                </testsuites>;
 
-    writeXml(filePath, elem)
+    writeXml(filePath, elem)*/
   }
 
 }

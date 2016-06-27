@@ -1,8 +1,9 @@
-package com.yutagithub.sforce.ci.xml
+package com.hiradimir.sforce.ci.xml
 
 import java.io.File
 import java.io.PrintWriter
 import scala.xml.Elem
+import scala.util.control.NonFatal
 
 trait XmlWriter {
   val xmlHeader = """<?xml version="1.0" encoding="UTF-8"?>"""
@@ -25,7 +26,7 @@ trait XmlWriter {
     try {
       op(writer)
     } catch{
-      case ex => throw ex;
+      case NonFatal(ex) => throw ex;
     }finally {
       writer.close()
     }

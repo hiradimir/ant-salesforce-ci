@@ -1,4 +1,4 @@
-package com.yutagithub.sforce.ci
+package com.hiradimir.sforce.ci
 
 import org.specs2._
 
