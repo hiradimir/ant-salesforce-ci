@@ -3,6 +3,8 @@
 
 # ant-salesforce-ci
 
+[![CircleCI](https://circleci.com/gh/hiradimir/ant-salesforce-ci.svg?style=svg)](https://circleci.com/gh/hiradimir/ant-salesforce-ci)
+
 extended deploy:ant-salesforce
 
 Usually use empty DE edition to target for deploy.
