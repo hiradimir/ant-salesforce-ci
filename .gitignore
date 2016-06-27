@@ -43,3 +43,5 @@ project/plugins/project/
 *.bak
 .cache-main
 .cache-tests
+lib/ant-salesforce.jar
+
