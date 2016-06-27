@@ -1,11 +1,25 @@
 <project name="Sample usage of Salesforce-CI Ant tasks" default="deployForCI" basedir="." xmlns:sfc="antlib:com.hiradimir.sforce.ci">
 
-	<property file="build.properties" />
+    <property name="property" value="build.properties"/>
 	<property environment="env" />
 
+    <available file="${property}" property="property.exists" />
+    <fail unless="${property.exists}" message="Property file does not exist: ${property}" />
+
+    <property file="${property}"/>
+	<echo message="Username: ${sf.username}" />
+    <echo message="deployTarget: ${deployTarget}" />
+    <echo message="retrieveTarget: ${retrieveTarget}" />
+	
 	<!-- Build / TestResult never actually saves to the server -->
 	<target name="deployForCI">
-		<sfc:deployForCI username="${sf.username}" password="${sf.password}" serverurl="${sf.serverurl}" deployRoot="src" sobjectPlural="true" />
+		<sfc:deployForCI 
+			username="${sf.username}" 
+			password="${sf.password}" 
+			serverurl="${sf.serverurl}" 
+			presentDirectory="src"
+			deployRoot="src" 
+			sobjectPlural="false" />
 	</target>
 
 	<!-- Build / TestResult never actually saves to the server -->
