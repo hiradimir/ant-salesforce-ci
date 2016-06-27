@@ -19,6 +19,7 @@
 			serverurl="${sf.serverurl}" 
 			presentDirectory="${basedir}/target/sforceci/src"
 			deployRoot="${basedir}/src"
+			testLevel="RunAllTestsInOrg"
 			sobjectPlural="true" />
 	</target>
 
