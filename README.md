@@ -64,17 +64,17 @@ ant -lib lib -Dsfc.sobjectPlural=true -Dsfc.testResultFile=<testResultFileName> 
 # Sample Jenkins ScreenShot
 
 ## Jenkins-Top
-![jenkins-top.png](//raw.githubusercontent.com/hiradimir/ant-salesforce-ci/master/src/test/resources/images/jenkins-top.png) 
+![jenkins-top.png](https://raw.githubusercontent.com/wiki/hiradimir/ant-salesforce-ci/images/jenkins-top.png) 
 ## Test-Result
-![test-failure-top.png](//raw.githubusercontent.com/hiradimir/ant-salesforce-ci/master/src/test/resources/images/test-failure-top.png) 
+![test-failure-top.png](https://raw.githubusercontent.com/wiki/hiradimir/ant-salesforce-ci/images/test-failure-top.png) 
 ## Test-Failure-Detail
-![test-failure-detail.png](//raw.githubusercontent.com/hiradimir/ant-salesforce-ci/master/src/test/resources/images/test-failure-detail.png) 
+![test-failure-detail.png](https://raw.githubusercontent.com/wiki/hiradimir/ant-salesforce-ci/images/test-failure-detail.png) 
 ## Coverage-Top
-![coverage-top.png](//raw.githubusercontent.com/hiradimir/ant-salesforce-ci/master/src/test/resources/images/coverage-top.png) 
+![coverage-top.png](https://raw.githubusercontent.com/wiki/hiradimir/ant-salesforce-ci/images/coverage-top.png) 
 ## Coverage-Classses(package)
-![coverage-classes.png](//raw.githubusercontent.com/hiradimir/ant-salesforce-ci/master/src/test/resources/images/coverage-classes.png) 
+![coverage-classes.png](https://raw.githubusercontent.com/wiki/hiradimir/ant-salesforce-ci/images/coverage-classes.png) 
 ## Coverage-Class(sample Util.cls)
-![coverage-class-util.png](//raw.githubusercontent.com/hiradimir/ant-salesforce-ci/master/src/test/resources/images/coverage-class-util.png) 
+![coverage-class-util.png](https://raw.githubusercontent.com/wiki/hiradimir/ant-salesforce-ci/images/coverage-class-util.png) 
 
 
 
