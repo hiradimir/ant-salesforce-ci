@@ -42,3 +42,4 @@ project/plugins/project/
 # bak files produced by ./cleanup-commit
 *.bak
 .cache-main
+.cache-test

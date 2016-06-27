@@ -6,7 +6,6 @@ scalaVersion := "2.11.7"
 
 libraryDependencies ++= Seq(
   "org.specs2" %% "specs2-core" % "3.0" % "test",
-  // "org.specs2" %% "specs2-scalaz-core" % "6.0.1" % "test",
   "junit" % "junit" % "4.9" % "test",
   "org.apache.ant" % "ant" % "1.8.3" % "compile",
   "org.scala-lang.modules" % "scala-xml_2.11" % "1.0.5"
