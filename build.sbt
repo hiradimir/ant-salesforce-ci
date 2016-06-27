@@ -1,6 +1,6 @@
 name := "ant-salesforce-ci"
 
-version := "1.0"
+version := "1.36-SNAPSHOT"
 
 scalaVersion := "2.11.7"
 
@@ -19,3 +19,4 @@ resolvers ++= Seq(
 )
 
 scalacOptions in Test ++= Seq("-Yrangepos")
+scalacOptions += "-feature"
