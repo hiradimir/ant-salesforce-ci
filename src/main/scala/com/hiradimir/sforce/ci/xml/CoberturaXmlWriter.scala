@@ -69,42 +69,39 @@ object CoberturaXmlWriter extends XmlWriter {
   }
 
   def saveCoverageResult(filePath: String, deployResult: com.sforce.soap.metadata.DeployResult) = {
-//    val rtr = deployResult.getRunTestResult
+    val rtr = deployResult.getDetails.getRunTestResult
 
-    /*
-    rtr.getCodeCoverage.map(cc => {
-      println("codeCoverage", cc.getNumLocations, cc.getNumLocationsNotCovered, cc.getName, cc.getType);
-      cc.getMethodInfo.foreach(mi => {
-        println("methodInfo", mi.getLine, mi.getColumn, mi.getNumExecutions, mi.getTime);
-      })
-      cc.getLocationsNotCovered.foreach(lnc => {
-       println("LocationsNotCovered", lnc.getLine, lnc.getTime);
-      })
-    })
-    */
-
-    //println(rtr.getCodeCoverage, rtr.getCodeCoverageWarnings, rtr.getFailures, rtr.getSuccesses)
-
-//    val coverage = Covarage(rtr.getCodeCoverage.groupBy(_.getType).map(pkg => {
-//      CoveragePackage(pkg._1, pkg._2.map(cls => {
-//        val filename = {
-//          pkg._1 match {
-//            case "Class" => {
-//              "classes/" + cls.getName + ".cls"
-//            }
-//            case "Trigger" => {
-//              "triggers/" + cls.getName + ".trigger"
-//            }
-//          }
-//        }
-//        CoverageClass(cls.getName, filename, cls.getNumLocationsNotCovered, cls.getNumLocations, cls.getLocationsNotCovered.map(lnc => {
-//          CoverageNotCoveredLine(lnc.getLine)
-//        }))
-//      }))
-//    }))
+//    rtr.getCodeCoverage.map(cc => {
+//      println("codeCoverage", cc.getNumLocations, cc.getNumLocationsNotCovered, cc.getName, cc.getType);
+//      cc.getMethodInfo.foreach(mi => {
+//        println("methodInfo", mi.getLine, mi.getColumn, mi.getNumExecutions, mi.getTime);
+//      })
+//      cc.getLocationsNotCovered.foreach(lnc => {
+//       println("LocationsNotCovered", lnc.getLine, lnc.getTime);
+//      })
+//    })
 //
-//    writeXml(filePath, coverage.toXml)
+//    println(rtr.getCodeCoverage, rtr.getCodeCoverageWarnings, rtr.getFailures, rtr.getSuccesses)
 
+    val coverage = Covarage(rtr.getCodeCoverage.groupBy(_.getType).map(pkg => {
+      CoveragePackage(pkg._1, pkg._2.map(cls => {
+        val filename = {
+          pkg._1 match {
+            case "Class" => {
+              "classes/" + cls.getName + ".cls"
+            }
+            case "Trigger" => {
+              "triggers/" + cls.getName + ".trigger"
+            }
+          }
+        }
+        CoverageClass(cls.getName, filename, cls.getNumLocationsNotCovered, cls.getNumLocations, cls.getLocationsNotCovered.map(lnc => {
+          CoverageNotCoveredLine(lnc.getLine)
+        }))
+      }))
+    }))
+
+    writeXml(filePath, coverage.toXml)
 
   }
 }

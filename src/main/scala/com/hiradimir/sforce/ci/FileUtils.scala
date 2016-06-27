@@ -1,6 +1,8 @@
 package com.hiradimir.sforce.ci
 
 import java.io._
+import scala.language.reflectiveCalls
+
 
 object FileUtils {
   def using[A <% { def close(): Unit }](s: A)(
