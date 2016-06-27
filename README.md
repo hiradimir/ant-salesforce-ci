@@ -40,43 +40,8 @@ I think to using together Jenkins.
 
 # sample
 
-[SampleSFDCProject](https://github.com/hiradimir/ForceComSample "sample project")
+> $ ant -lib target/scala-2.11 -f ForceComSample/build.xml deployForCI
 
-## dir-design
-
-TBD I'm re-thinking
-
-* build.xml
-* lib/ 
- * ant-salesforce-ci.jar
-* src/
- * classes
- * pages
- * triggers
-
-
-## build.xml
-
-```xml
-<project name="Sample usage of Salesforce-CI Ant tasks" default="deployForCI" basedir="." xmlns:sfc="antlib:com.hiradimir.sforce.ci">
-
-  <property file="build.properties" />
-	<property environment="env" />
-
-	<!-- Build / TestResult never actually saves to the server -->
-	<target name="deployForCI">
-		<sfc:deployForCI username="${sf.username}" password="${sf.password}" serverurl="${sf.serverurl}" deployRoot="src" />
-	</target>
-	
-</project>
-```
-
-
-## command
-run at command line
-```shell
-ant -lib lib -Dsfc.sobjectPlural=true -Dsfc.testResultFile=<testResultFileName> -Dsfc.coverageResultFile=<coverageResultFileName> -Dsf.username=<sf.username> -Dsf.password=<password><securityToken> deployForCI
-```
 
 # Sample Jenkins ScreenShot
 
