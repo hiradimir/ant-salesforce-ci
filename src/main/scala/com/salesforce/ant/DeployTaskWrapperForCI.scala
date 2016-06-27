@@ -8,7 +8,7 @@ import com.sforce.soap.metadata.DebuggingHeader_element
 import com.hiradimir.sforce.ci.FileUtils
 import com.hiradimir.sforce.ci.xml
 
-class DeployTaskWrapperForCI extends DeployTask {
+trait DeployTaskWrapperForCI extends DeployTask {
   
   override def execute() = {
     
@@ -29,7 +29,7 @@ class DeployTaskWrapperForCI extends DeployTask {
 
     if (sobjectPlural == true.toString) {
       val dir = new java.io.File(getFileForPath(presentDirectory), "objects")
-      println(dir)
+      println(dir.getAbsolutePath)
       dir.listFiles().filter(_.getName.endsWith(".object")).foreach(file => {
         xml.PluralLabelCombine.combine(file.getCanonicalPath)
       })

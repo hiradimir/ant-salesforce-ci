@@ -9,12 +9,6 @@ import org.apache.tools.ant.BuildException
 import com.salesforce.ant.DeployTaskWrapperForCI
 import org.apache.tools.ant.Task
 
-class DeployTaskForCI extends Task {
-
-  override def execute() = {
-    val wrapper = new DeployTaskWrapperForCI();
-    
-    wrapper.execute();
-  }
+class DeployTaskForCI extends DeployTaskWrapperForCI {
 }
 
