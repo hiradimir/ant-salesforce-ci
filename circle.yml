@@ -1,0 +1,8 @@
+dependencies:
+  override:
+    - sbt test:compile
+    - sbt assembly
+
+general:
+  artifacts:
+    - "~/target/scala-2.11/ant-salesforce-ci-assembly-1.36-SNAPSHOT.jar"
