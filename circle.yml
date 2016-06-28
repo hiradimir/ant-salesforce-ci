@@ -1,8 +1,13 @@
 dependencies:
   override:
     - sbt test:compile
+test:
+  override:
     - sbt assembly
+  post:
+#    - bash <(curl -s https://codecov.io/bash)
 
 general:
   artifacts:
     - "~/target/scala-2.11/ant-salesforce-ci-assembly-1.36-SNAPSHOT.jar"
+
