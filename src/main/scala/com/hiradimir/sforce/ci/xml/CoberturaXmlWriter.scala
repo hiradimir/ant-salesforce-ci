@@ -45,7 +45,7 @@ object CoberturaXmlWriter extends XmlWriter {
   }
 
   case class CoveragePackage(packageName: String, child: Traversable[CoverageClass]) extends NotCoveredValid with CoveredRate with toXml {
-    def toXml = <package com.hiradimir.sforce.ci.xml={ packageName } line-rate={ lineRate.toString } branch-rate="0" complexity="0">
+    def toXml = <package name={ packageName } line-rate={ lineRate.toString } branch-rate="0" complexity="0">
                   <classes>{ child.map(_.toXml) }</classes>
                 </package>
   }
