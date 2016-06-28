@@ -1,25 +1,16 @@
 package com.hiradimir.sforce.ci.xml
 
-import org.specs2._
-import runner._
-import scala.xml.Elem
-import scala.xml.dtd.EMPTY
+import org.scalatest._
+import Matchers._
 
-/**
- * This class must be inherited to allow a Specification to be executed as a JUnit test
- */
-class XmlWriterTest extends Specification {
+class XmlWriterTest extends FlatSpec {
+  
+  "XmlWriter" should "can write xml create with directory" in {
 
-  def is = "XmlWriter" ^
-    "can write xml " ! e1  ^
-    "can create with directory" ! e2 ^
-    end
-
-  val writer = new AnyRef with XmlWriter
-
-  def e1 = writer.writeXml(new java.io.File("test.xml"), <test></test>)  must not be null
-
-  def e2 = writer.writeXml(new java.io.File("target/test/test.xml"), <test></test>) must not be null
-
+    val writer = new AnyRef with XmlWriter
+    
+    writer.writeXml(new java.io.File("target/test/test.xml"), <test></test>) should not equal null;
+    
+  }
 
 }

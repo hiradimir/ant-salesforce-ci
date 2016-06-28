@@ -1,19 +1,16 @@
 package com.hiradimir.sforce.ci
 
-import org.specs2._
+import org.scalatest._
+import Matchers._
 
-import runner._
+class XmlWriterTest extends FlatSpec {
+  
+  "DeployTaskForCI" should "can create with default constructor" in {
 
-/**
- * This class must be inherited to allow a Specification to be executed as a JUnit test
- */
-class DeployTaskForCITest extends Specification {
-  def is = "DeployTaskForCI" ^
-    "can create " ! e1 ^
-    end
-
-  val sampleInstance = new DeployTaskForCI
-
-  def e1 = sampleInstance must not be null
+    val sampleInstance = new DeployTaskForCI
+    
+    assert(sampleInstance !== null)
+    
+  }
 
 }

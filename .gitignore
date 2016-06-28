@@ -44,4 +44,4 @@ project/plugins/project/
 .cache-main
 .cache-tests
 lib/ant-salesforce.jar
-test.xml
+.env

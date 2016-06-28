@@ -24,8 +24,15 @@
 	</target>
 
 	<!-- Build / TestResult never actually saves to the server -->
-	<target name="deployForJenkins">
-		<sfc:deployForCI username="${env.sfdc_ci_username}" password="${env.sfdc_ci_passphrase}" serverurl="${sf.serverurl}" deployRoot="src" sobjectPlural="true" />
+	<target name="deployForCI-Env">
+		<sfc:deployForCI 
+			username="${env.sforce_ci_username}" 
+			password="${env.sforce_ci_passphrase}" 
+			serverurl="${env.sforce_ci_serverurl}" 
+			presentDirectory="${basedir}/target/sforceci/src"
+			deployRoot="${basedir}/src"
+			testLevel="RunAllTestsInOrg"
+			sobjectPlural="true" />
 	</target>
 
 </project>

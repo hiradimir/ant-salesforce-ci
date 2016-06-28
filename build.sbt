@@ -5,10 +5,12 @@ version := "1.36-SNAPSHOT"
 scalaVersion := "2.11.7"
 
 libraryDependencies ++= Seq(
-  "org.specs2" %% "specs2-core" % "3.8.4" % "test",
   "org.apache.ant" % "ant" % "1.8.3" % "compile",
-  "org.scala-lang.modules" % "scala-xml_2.11" % "1.0.5"
+  "org.scala-lang.modules" %% "scala-xml" % "1.0.5"
 )
+
+libraryDependencies += "org.scalactic" %% "scalactic" % "2.2.6" % "test"
+libraryDependencies += "org.scalatest" %% "scalatest" % "2.2.6" % "test"
 
 // Read here for optional dependencies: 
 // http://etorreborre.github.com/specs2/guide/org.specs2.guide.Runners.html#Dependencies
