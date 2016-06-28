@@ -3,7 +3,7 @@ package com.hiradimir.sforce.ci.xml
 import org.scalatest._
 import Matchers._
 
-class XmlWriterTest extends FlatSpec {
+class XmlWriterSpec extends FlatSpec {
   
   "XmlWriter" should "can write xml create with directory" in {
 

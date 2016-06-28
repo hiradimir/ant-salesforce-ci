@@ -24,11 +24,11 @@ trait DeployTaskWrapperForCI extends DeployTask {
       presentDir.delete;
     }
 
-    FileUtils.copyDirectry(new java.io.File(deployRootCI), presentDir)
-    super.setDeployRoot(presentDirectory);
+    FileUtils.copyDirectry(getFileForPath(deployRootCI), presentDir)
+    super.setDeployRoot(presentDir.getAbsolutePath);
 
     if (true.toString.equalsIgnoreCase(sobjectPlural)) {
-      val dir = new java.io.File(getFileForPath(presentDirectory), "objects")
+      val dir = new java.io.File(presentDir, "objects")
       println(dir.getAbsolutePath)
       dir.listFiles().filter(_.getName.endsWith(".object")).foreach(file => {
         xml.PluralLabelCombine.combine(file.getCanonicalPath)

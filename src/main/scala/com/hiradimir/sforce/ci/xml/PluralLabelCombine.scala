@@ -7,8 +7,7 @@ import scala.xml.transform._
 object PluralLabelCombine extends XmlWriter {
 
   def combine(name: String): Unit = {
-    println(name)
-    println(this)
+    println("append pluralLabel to " + name)
     val cobjxmlns = """<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">"""
 
     val r = scala.io.Source.fromFile(name, "UTF-8")

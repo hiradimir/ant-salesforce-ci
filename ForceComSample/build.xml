@@ -17,10 +17,11 @@
 			username="${sf.username}" 
 			password="${sf.password}" 
 			serverurl="${sf.serverurl}" 
-			presentDirectory="${basedir}/target/sforceci/src"
-			deployRoot="${basedir}/src"
+			presentDirectory="target/sforceci/src"
+			deployRoot="src"
 			testLevel="RunAllTestsInOrg"
-			sobjectPlural="true" />
+			sobjectPlural="true" 
+		/>
 	</target>
 
 	<!-- Build / TestResult never actually saves to the server -->
