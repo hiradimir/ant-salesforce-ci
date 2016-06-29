@@ -5,9 +5,9 @@ test:
   override:
     - sbt assembly
   post:
-#    - bash <(curl -s https://codecov.io/bash)
+    - bash <(curl -s https://codecov.io/bash)
 
 general:
   artifacts:
-    - "~/target/scala-2.11/ant-salesforce-ci-assembly-1.36-SNAPSHOT.jar"
+    - "target/scala-2.11/ant-salesforce-ci-assembly-1.36.0-SNAPSHOT.jar"
 
