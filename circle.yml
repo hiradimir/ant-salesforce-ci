@@ -3,7 +3,8 @@ dependencies:
     - sbt test:compile
 test:
   override:
-    - sbt coverage assembly coverageReport
+    - sbt coverage test coverageReport
+    - sbt "set test in assembly := {}" assembly
   post:
     - bash <(curl -s https://codecov.io/bash)
 
