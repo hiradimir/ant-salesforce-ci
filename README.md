@@ -1,7 +1,7 @@
-## Current target for ant-salesforce version 36
-## But not working
-
 # ant-salesforce-ci
+
+## Current target for ant-salesforce version 36
+
 
 [![CircleCI](https://circleci.com/gh/hiradimir/ant-salesforce-ci.svg?style=svg)](https://circleci.com/gh/hiradimir/ant-salesforce-ci)
 
