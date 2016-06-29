@@ -9,5 +9,5 @@ test:
 
 general:
   artifacts:
-    - "target/scala-2.11/ant-salesforce-ci-assembly-1.36.0-SNAPSHOT.jar"
+    - "target/scala-2.11/ant-salesforce-ci-assembly-1.36.0.jar"
 

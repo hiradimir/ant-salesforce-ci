@@ -1,6 +1,6 @@
 name := "ant-salesforce-ci"
 
-version := "1.36.0-SNAPSHOT"
+version := "1.36.0"
 
 scalaVersion := "2.11.7"
 
