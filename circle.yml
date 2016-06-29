@@ -3,7 +3,7 @@ dependencies:
     - sbt test:compile
 test:
   override:
-    - sbt assembly
+    - sbt coverage assembly coverageReport
   post:
     - bash <(curl -s https://codecov.io/bash)
 
