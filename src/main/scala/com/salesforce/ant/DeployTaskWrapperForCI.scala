@@ -30,9 +30,11 @@ trait DeployTaskWrapperForCI extends DeployTask {
     if (true.toString.equalsIgnoreCase(sobjectPlural)) {
       val dir = new java.io.File(presentDir, "objects")
       println(dir.getAbsolutePath)
-      dir.listFiles().filter(_.getName.endsWith(".object")).foreach(file => {
-        xml.PluralLabelCombine.combine(file.getCanonicalPath)
-      })
+      if (dir.exists()) {
+        dir.listFiles().filter(_.getName.endsWith(".object")).foreach(file => {
+          xml.PluralLabelCombine.combine(file.getCanonicalPath)
+        })
+      }
     }
     super.execute();
   }
