@@ -19,6 +19,10 @@ object RunDeployForCI extends App{
     task.setSobjectPlural("true")
     task.setTestLevel("RunAllTestsInOrg")
     task.setDeployRoot("ForceComSample/src")
+    
+    task.setNoErrorOnTestFail(true)
+    task.setNoErrorOnCoveargeWarning(true)
+    
     task.execute();
 
 }

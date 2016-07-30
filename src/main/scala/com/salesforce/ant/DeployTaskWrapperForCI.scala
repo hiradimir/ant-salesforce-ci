@@ -64,6 +64,16 @@ trait DeployTaskWrapperForCI extends DeployTask {
     this.testResultFile = testResultFile;
   }
   
+  var noErrorOnTestFail: Boolean = false;
+  def setNoErrorOnTestFail(noErrorOnTestFail: Boolean) {
+    this.noErrorOnTestFail = noErrorOnTestFail;
+  }
+  
+  var noErrorOnCoveargeWarning: Boolean = false;
+  def setNoErrorOnCoveargeWarning(noErrorOnCoveargeWarning: Boolean) {
+    this.noErrorOnCoveargeWarning = noErrorOnCoveargeWarning;
+  }
+  
   @throws(classOf[ConnectionException])
   override def handleResponse(metadataConnection: MetadataConnection, result: SFDCMDAPIAntTask.StatusResult): Unit = {
     
@@ -75,7 +85,21 @@ trait DeployTaskWrapperForCI extends DeployTask {
     xml.CoberturaXmlWriter.saveCoverageResult(
       coverageResultFile, deployResult)
 
-    super.handleResponse(metadataConnection, result);
+    try{
+      super.handleResponse(metadataConnection, result);
+    }catch {
+      case e:Exception => 
+        if (deployResult.getDetails.getComponentFailures.length > 0 ){
+          throw e;
+        }
+        if (!noErrorOnTestFail && deployResult.getDetails.getRunTestResult.getNumFailures != 0 ){
+          throw e;
+        }
+        if (!noErrorOnCoveargeWarning && deployResult.getDetails.getRunTestResult.getCodeCoverageWarnings.length > 0 ){
+          throw e;
+        }
+        println(e);
+    }
 
   }
 }
