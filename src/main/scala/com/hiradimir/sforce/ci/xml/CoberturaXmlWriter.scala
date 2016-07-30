@@ -50,7 +50,7 @@ object CoberturaXmlWriter extends XmlWriter {
                 </package>
   }
 
-  case class Covarage(child: Traversable[CoveragePackage]) extends NotCoveredValid with CoveredRate with toXml {
+  case class Covarage(child: Traversable[CoveragePackage], deployRoot: String) extends NotCoveredValid with CoveredRate with toXml {
     def toXml = <coverage line-rate={
       lineRate.toString
     } lines-covered={
@@ -60,7 +60,7 @@ object CoberturaXmlWriter extends XmlWriter {
     } branch-rate="0" branches-covered="0" branches-valid="0" complexity="0" version="1.9.4.1" timestamp={ System.currentTimeMillis.toString }>
                   <sources>
                     <source>--source</source>
-                    <source>src/</source>
+                    <source>{deployRoot}</source>
                   </sources>
                   {
                     child.map(_.toXml)
@@ -68,7 +68,7 @@ object CoberturaXmlWriter extends XmlWriter {
                 </coverage>;
   }
 
-  def saveCoverageResult(filePath: String, deployResult: com.sforce.soap.metadata.DeployResult) = {
+  def saveCoverageResult(filePath: String, deployResult: com.sforce.soap.metadata.DeployResult, deployRoot: String) = {
     val rtr = deployResult.getDetails.getRunTestResult
 
 //    rtr.getCodeCoverage.map(cc => {
@@ -99,7 +99,7 @@ object CoberturaXmlWriter extends XmlWriter {
           CoverageNotCoveredLine(lnc.getLine)
         }))
       }))
-    }))
+    }), deployRoot)
 
     writeXml(filePath, coverage.toXml)
 

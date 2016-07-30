@@ -83,7 +83,7 @@ trait DeployTaskWrapperForCI extends DeployTask {
       testResultFile, deployResult)
 
     xml.CoberturaXmlWriter.saveCoverageResult(
-      coverageResultFile, deployResult)
+      coverageResultFile, deployResult, getFileForPath(deployRootCI).getAbsolutePath)
 
     try{
       super.handleResponse(metadataConnection, result);
