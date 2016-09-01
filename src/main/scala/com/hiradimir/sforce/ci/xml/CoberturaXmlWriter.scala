@@ -79,7 +79,9 @@ object CoberturaXmlWriter extends XmlWriter {
     val coverage = Covarage(rtr.getCodeCoverage.groupBy(_.getType).map(pkg => {
       CoveragePackage(pkg._1, pkg._2.filter(cls => {
         cls.getName.matches(coverageClassNameFilter)
-      }).map(cls => {
+      })
+      .sortBy { cls => cls.getName }
+      .map(cls => {
         val filename = {
           pkg._1 match {
             case "Class" => {
