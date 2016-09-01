@@ -30,7 +30,11 @@ object CoberturaXmlWriter extends XmlWriter {
   }
 
   case class CoverageClass(name: String, fileName: String, linesNotCovered: Int, linesValid: Int, lines: Traversable[CoverageNotCoveredLine]) extends CoveredRate with toXml {
-    def toXml = <class name={ name } filename={ fileName } line-rate={ lineRate.toString } branch-rate="0" complexity="0">
+    def toXml = {
+      if(lineRate < 1){
+          println("%s not covered lines: [%s]".format(name, lines.map(l => l.line).mkString(",")));
+      }
+      <class name={ name } filename={ fileName } line-rate={ lineRate.toString } branch-rate="0" complexity="0">
                   <methods/>
                   <lines>{
                     // dummy line coverage
@@ -42,6 +46,7 @@ object CoberturaXmlWriter extends XmlWriter {
                     lines.map(_.toXml)
                   }</lines>
                 </class>
+    }
   }
 
   case class CoveragePackage(packageName: String, child: Traversable[CoverageClass]) extends NotCoveredValid with CoveredRate with toXml {
