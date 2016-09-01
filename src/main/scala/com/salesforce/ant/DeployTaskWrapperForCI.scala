@@ -7,22 +7,23 @@ import com.sforce.ws.ConnectionException
 import com.sforce.soap.metadata.DebuggingHeader_element
 import com.hiradimir.sforce.ci.FileUtils
 import com.hiradimir.sforce.ci.xml
+import java.io.File
+import java.nio.file.Files
+import java.nio.file.Path
 
 trait DeployTaskWrapperForCI extends DeployTask {
   
   override def execute() = {
     
-    // for safety
-    this.setCheckonly(true);
-    this.setRunAllTests(true);
-    this.setRollbackOnError(true);
-    // for all deploy
-    this.setAutoUpdatePackage(true);
-    
     var presentDir = new java.io.File(presentDirectory)
-    if(presentDir.exists){
-      presentDir.delete;
+    
+    def delete(file: File) {
+      if (file.isDirectory) 
+        Option(file.listFiles).map(_.toList).getOrElse(Nil).foreach(delete(_))
+      file.delete
     }
+    
+    delete(presentDir);
 
     FileUtils.copyDirectry(getFileForPath(deployRootCI), presentDir)
     super.setDeployRoot(presentDir.getAbsolutePath);
@@ -45,23 +46,49 @@ trait DeployTaskWrapperForCI extends DeployTask {
     this.deployRootCI = deployRoot
     super.setDeployRoot(deployRoot)
   }
-  var presentDirectory: String = "target/sforceci/src"
+  private var _presentDirectory: String = _
+  def presentDirectory = {
+    if(null == _presentDirectory){
+      getFileForPath("target/sforceci/src").getAbsolutePath
+    } else {
+      _presentDirectory
+    }
+  }
   def setPresentDirectory(presentDirectory: String) = {
-    this.presentDirectory = presentDirectory
+    this._presentDirectory = presentDirectory
   }
   var sobjectPlural: String = false.toString;
   def setSobjectPlural(sobjectPlural: String) {
     this.sobjectPlural = sobjectPlural;
   }
 
-  var coverageResultFile: String = "target/sforceci/coverage.xml";
+  private var _coverageResultFile: String = _
+  def coverageResultFile = {
+    if(null == _coverageResultFile) {
+      getFileForPath("target/sforceci/coverage.xml").getAbsolutePath;
+    } else {
+      _coverageResultFile
+    }
+  }
   def setCoverageResultFile(coverageResultFile: String) {
-    this.coverageResultFile = coverageResultFile;
+    this._coverageResultFile = coverageResultFile;
   }
 
-  var testResultFile: String = "target/sforceci/test-result.xml";
+  private var _testResultFile: String = _
+  def testResultFile = {
+    if(null == _testResultFile){
+      getFileForPath("target/sforceci/test-result.xml").getAbsolutePath;
+    } else {
+      _testResultFile
+    }
+  }
   def setTestResultFile(testResultFile: String) {
-    this.testResultFile = testResultFile;
+    this._testResultFile = testResultFile;
+  }
+
+  var coverageReportClassNameFilter: String = ".*";
+  def setCoverageReportClassNameFilter(coverageReportClassNameFilter: String) {
+    this.coverageReportClassNameFilter = coverageReportClassNameFilter;
   }
   
   var noErrorOnTestFail: Boolean = false;
@@ -83,7 +110,7 @@ trait DeployTaskWrapperForCI extends DeployTask {
       testResultFile, deployResult)
 
     xml.CoberturaXmlWriter.saveCoverageResult(
-      coverageResultFile, deployResult, getFileForPath(deployRootCI).getAbsolutePath)
+      coverageResultFile, deployResult, coverageReportClassNameFilter, getFileForPath(deployRootCI).getAbsolutePath)
 
     try{
       super.handleResponse(metadataConnection, result);

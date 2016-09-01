@@ -1,5 +1,7 @@
 # ant-salesforce-ci
 
+## disabled force-checkOnly option since ant-salesforce-co@1.36.4 
+
 ## Current target for ant-salesforce version 36
 
 
@@ -34,7 +36,10 @@ I think to using together Jenkins.
 #### option
 1. sfc.testResultFile (default:target/sforceci/test-result.xml)
 1. sfc.coverageResultFile (default:target/sforceci/coverage.xml)
+1. sfc.coverageReportClassNameFilter (coverage.xml className filter regex. default:".*")
 1. sfc.sobjectPlural (true:add pluralLabel, false:nothing to do, default=false)
+1. sfc.noErrorOnTestFail (control raise testFail error of ant-task, true: not-raised error on fail, false: raised error on fail. default=false)
+1. sfc.noErrorOnCoveargeWarning (control raise coverageWarning at 75% sfdc on ant-task, true: not-raised error on fail, false: raised error on fail. default=false)
 
 
 

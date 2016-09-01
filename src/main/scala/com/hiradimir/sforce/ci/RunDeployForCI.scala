@@ -23,6 +23,10 @@ object RunDeployForCI extends App{
     task.setNoErrorOnTestFail(true)
     task.setNoErrorOnCoveargeWarning(true)
     
+    task.setCheckonly(true);
+    task.setRollbackOnError(true);
+    task.setAutoUpdatePackage(true);
+    
     task.execute();
 
 }
