@@ -27,6 +27,8 @@ object RunDeployForCI extends App{
     task.setRollbackOnError(true);
     task.setAutoUpdatePackage(true);
     
+    task.setCoverageReportClassNameFilter("Ut.*")
+
     task.execute();
 
 }

@@ -46,23 +46,49 @@ trait DeployTaskWrapperForCI extends DeployTask {
     this.deployRootCI = deployRoot
     super.setDeployRoot(deployRoot)
   }
-  var presentDirectory: String = "target/sforceci/src"
+  private var _presentDirectory: String = _
+  def presentDirectory = {
+    if(null == _presentDirectory){
+      getFileForPath("target/sforceci/src").getAbsolutePath
+    } else {
+      _presentDirectory
+    }
+  }
   def setPresentDirectory(presentDirectory: String) = {
-    this.presentDirectory = presentDirectory
+    this._presentDirectory = presentDirectory
   }
   var sobjectPlural: String = false.toString;
   def setSobjectPlural(sobjectPlural: String) {
     this.sobjectPlural = sobjectPlural;
   }
 
-  var coverageResultFile: String = "target/sforceci/coverage.xml";
+  private var _coverageResultFile: String = _
+  def coverageResultFile = {
+    if(null == _coverageResultFile) {
+      getFileForPath("target/sforceci/coverage.xml").getAbsolutePath;
+    } else {
+      _coverageResultFile
+    }
+  }
   def setCoverageResultFile(coverageResultFile: String) {
-    this.coverageResultFile = coverageResultFile;
+    this._coverageResultFile = coverageResultFile;
   }
 
-  var testResultFile: String = "target/sforceci/test-result.xml";
+  private var _testResultFile: String = _
+  def testResultFile = {
+    if(null == _testResultFile){
+      getFileForPath("target/sforceci/test-result.xml").getAbsolutePath;
+    } else {
+      _testResultFile
+    }
+  }
   def setTestResultFile(testResultFile: String) {
-    this.testResultFile = testResultFile;
+    this._testResultFile = testResultFile;
+  }
+
+  var coverageReportClassNameFilter: String = ".*";
+  def setCoverageReportClassNameFilter(coverageReportClassNameFilter: String) {
+    this.coverageReportClassNameFilter = coverageReportClassNameFilter;
   }
   
   var noErrorOnTestFail: Boolean = false;
@@ -84,7 +110,7 @@ trait DeployTaskWrapperForCI extends DeployTask {
       testResultFile, deployResult)
 
     xml.CoberturaXmlWriter.saveCoverageResult(
-      coverageResultFile, deployResult, getFileForPath(deployRootCI).getAbsolutePath)
+      coverageResultFile, deployResult, coverageReportClassNameFilter, getFileForPath(deployRootCI).getAbsolutePath)
 
     try{
       super.handleResponse(metadataConnection, result);
