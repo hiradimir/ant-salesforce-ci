@@ -7,22 +7,23 @@ import com.sforce.ws.ConnectionException
 import com.sforce.soap.metadata.DebuggingHeader_element
 import com.hiradimir.sforce.ci.FileUtils
 import com.hiradimir.sforce.ci.xml
+import java.io.File
+import java.nio.file.Files
+import java.nio.file.Path
 
 trait DeployTaskWrapperForCI extends DeployTask {
   
   override def execute() = {
     
-    // for safety
-    this.setCheckonly(true);
-    this.setRunAllTests(true);
-    this.setRollbackOnError(true);
-    // for all deploy
-    this.setAutoUpdatePackage(true);
-    
     var presentDir = new java.io.File(presentDirectory)
-    if(presentDir.exists){
-      presentDir.delete;
+    
+    def delete(file: File) {
+      if (file.isDirectory) 
+        Option(file.listFiles).map(_.toList).getOrElse(Nil).foreach(delete(_))
+      file.delete
     }
+    
+    delete(presentDir);
 
     FileUtils.copyDirectry(getFileForPath(deployRootCI), presentDir)
     super.setDeployRoot(presentDir.getAbsolutePath);

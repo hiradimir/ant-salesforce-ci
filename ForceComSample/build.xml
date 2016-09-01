@@ -20,7 +20,10 @@
 			presentDirectory="target/sforceci/src"
 			deployRoot="src"
 			testLevel="RunAllTestsInOrg"
-			sobjectPlural="true" 
+			sobjectPlural="true"
+			checkOnly="true"
+			rollbackOnError="true"
+			autoUpdatePackage="true"
 		/>
 	</target>
 
@@ -33,7 +36,11 @@
 			presentDirectory="${basedir}/target/sforceci/src"
 			deployRoot="${basedir}/src"
 			testLevel="RunAllTestsInOrg"
-			sobjectPlural="true" />
+			sobjectPlural="true"
+			checkOnly="true"
+			rollbackOnError="true"
+			autoUpdatePackage="true"
+		/>
 	</target>
 
 </project>
