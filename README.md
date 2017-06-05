@@ -1,8 +1,8 @@
 # ant-salesforce-ci
 
-## disabled force-checkOnly option since ant-salesforce-co@1.36.4 
+## disabled force-checkOnly option since ant-salesforce-co@1.36.4
 
-## Current target for ant-salesforce version 36
+## Current target for ant-salesforce version 39
 
 
 [![CircleCI](https://circleci.com/gh/hiradimir/ant-salesforce-ci.svg?style=svg)](https://circleci.com/gh/hiradimir/ant-salesforce-ci)
